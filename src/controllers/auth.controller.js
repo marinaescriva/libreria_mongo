@@ -47,13 +47,15 @@ export const register = async(req, res) => {  //no se tipa request ni response p
             res.status(500).json({
                 success: false,
                 message: "User cant be registered",
-                error: error
+                error: error.message
             })
         }
     };
 
 
 export const login = (req, res) => {  //no se tipa request ni response porq es javascript!
+
+    
     res.status(200).json(
         {
             success: true,
