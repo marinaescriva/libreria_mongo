@@ -125,7 +125,7 @@ export const deleteBookById = async (req, res) => {
         }
         console.log(bookId , "1")
         
-        const bookDeleted = await Book.findOneAndDelete(
+        const bookDeleted = await Book.findOneAndDelete( //pull para borrar solo un campo del libro
             {
             _id:bookId  //busqueda de un libro y lo elimina si el id coincide con el que pasas en ruta
             }
