@@ -5,7 +5,7 @@ const UserSchema = new Schema(
     {
         name: {
             type: String,
-            required: false
+            required: true,
         },
         email: {
             type: String,
@@ -20,7 +20,13 @@ const UserSchema = new Schema(
             type: String,
             enum: ["user", "admin", "super_admin"],
             default: "user"
-        }
+        },
+        favouriteBooks: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Book'
+            }
+        ]
     },
     {
         timestamps: true,

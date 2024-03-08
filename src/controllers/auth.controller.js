@@ -11,6 +11,7 @@ export const register = async (req, res) => {  //no se tipa request ni response 
 
         const email = req.body.email
         const password = req.body.password
+        const name = req.body.name
 
 
         if (password.length < 6 || password.length > 10) {
@@ -33,6 +34,7 @@ export const register = async (req, res) => {  //no se tipa request ni response 
         const passwordEncrypted = bcrypt.hashSync(password, 5)
 
         const newUser = await User.create({
+            name: name,
             email: email,
             password: passwordEncrypted
         }
@@ -41,7 +43,7 @@ export const register = async (req, res) => {  //no se tipa request ni response 
 
         res.status(201).json({
             success: true,
-            message: "User registered succesfully",
+            message: `User is registered succesfully`,
             data: newUser
         })
     } catch (error) {
@@ -114,9 +116,13 @@ export const login = async (req, res) => {  //no se tipa request ni response por
         )
 
         res.status(200).json({
+        
             success: true,
-            message: "User logged succesfully",
-            token: token //MOSTRAMOS EL TOKEN DE MANERA TEMPORAL PARA PODER PROBAR CON ÉL OTRA FUNCIONALIDADES
+            message: `User ${user.name} logged succesfully`,
+            token: token , 
+           
+            
+            //MOSTRAMOS EL TOKEN DE MANERA TEMPORAL PARA PODER PROBAR CON ÉL OTRA FUNCIONALIDADES
         })
 
     } catch (error) {
